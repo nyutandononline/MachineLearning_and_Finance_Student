@@ -110,24 +110,6 @@ class Helper():
       
       return history
 
-  def MyModel(self, test_dir, model_path):
-      # YOU MAY NOT change model after this statement !
-      model = self.loadModel(model_path)
-      
-      # It should run model to create an array of predictions; we initialize it to the empty array for convenience
-      predictions = []
-      
-      # We need to match your array of predictions with the examples you are predicting
-      # The array below (ids) should have a one-to-one correspondence and identify the example your are predicting
-      # For Bankruptcy: the Id column
-      # For Stock prediction: the date on which you are making a prediction
-      ids = []
-      
-      # YOUR CODE GOES HERE
-      
-      
-      return predictions, ids
-
   def json_to_numpy(self, json_file):
     # Read the JSON file
     f = open(json_file)
