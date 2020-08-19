@@ -143,35 +143,6 @@ class Helper():
     return data, labels
 
 
-
-
-  from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
-  modelName = "Ships_in_satellite_images"
-  es_callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=.01, patience=2, verbose=0, mode='auto', baseline=None, restore_best_weights=True)
-
-  callbacks = [ es_callback,
-                ModelCheckpoint(filepath=modelName + ".ckpt", monitor='accuracy', save_best_only=True)
-                ]   
-
-  max_epochs = 30
-
-  def train(self, model, X, y, model_name, epochs=max_epochs):
-    # Describe the model
-    model.summary()
-
-    # Compile the model
-    model.compile(loss='categorical_crossentropy', metrics=['accuracy'])
-
-    # Fix the validation set (for repeatability, not a great idea, in general)
-    X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.20, random_state=42)
-    
-    print("Train set size: ", X_train.shape[0], ", Validation set size: ", X_valid.shape[0])
-
-    history = model.fit(X_train, y_train, epochs=max_epochs, validation_data=(X_valid, y_valid), callbacks=callbacks)
-    fig, axs = plotTrain(history, model_name)
-
-    return history, fig, axs
-
   def plotTrain(self, history, model_name="???"):
     fig, axs = plt.subplots( 1, 2, figsize=(12, 5) )
 
